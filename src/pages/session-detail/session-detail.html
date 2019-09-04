@@ -1,0 +1,76 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title *ngIf="item">{{item.nama}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+	<div padding-top text-center>
+
+		<img *ngIf="item" style="width: 160px; height: 160px;border-radius: 50%;" src={{item.img}} alt="avatar">
+
+	</div>
+	<ion-list no-lines>
+		
+		<ion-item>
+			<ion-label stacked color="primary">Nama</ion-label>
+			<ion-input type="text" *ngIf="item" readonly value="{{item.nama}}"></ion-input>
+
+		</ion-item>
+		<ion-item>
+			<ion-label stacked color="primary">Posisi</ion-label>
+			<ion-input type="text" *ngIf="item" readonly value="{{item.posisi}}"></ion-input>
+
+		</ion-item>
+		<ion-item>
+			<ion-label stacked color="primary">Group</ion-label>
+			<ion-input type="text" *ngIf="item" readonly value="{{item.Direktorat}}"></ion-input>
+
+		</ion-item>
+		<ion-item>
+			<ion-label stacked rows="4" color="primary">Alamat</ion-label>
+			<ion-textarea *ngIf="item" readonly value="{{item.alamat}}"></ion-textarea>
+
+		</ion-item>
+		<ion-item>
+			<ion-label stacked color="primary">Email</ion-label>
+			<ion-input type="text" *ngIf="item" readonly value="{{item.userLoginName}}@lps.go.id"></ion-input>
+
+		</ion-item>
+
+		<ion-item>
+			<ion-label stacked color="primary">Ext</ion-label>
+			<ion-input type="text" *ngIf="item" readonly value="{{item.Ext}}"></ion-input>
+
+		</ion-item>
+
+
+
+
+
+
+		<ion-row>
+
+			<ion-col col-12 col-lg-auto text-center text-lg-right color="primary">
+				<button ion-button color="white" *ngIf="item" icon-start (click)="openContact(item)">
+					<ion-icon name='chatboxes'></ion-icon>
+					Contact
+				</button>
+			</ion-col>
+		</ion-row>
+
+		<!-- <ion-item> -->
+		<!-- <ion-label stacked color="primary">Mobile Phone</ion-label> -->
+		<!-- <ion-input type="text" *ngIf="item" readonly value="{{item.MobilePhone}}"></ion-input> -->
+
+		<!-- </ion-item> -->
+		<!-- <ion-item> -->
+		<!-- <ion-label stacked color="primary">Ext</ion-label> -->
+		<!-- <ion-input type="text" *ngIf="item" readonly value="{{item.Ext}}"></ion-input> -->
+
+		<!-- </ion-item> -->
+	</ion-list>
+
+
+</ion-content>

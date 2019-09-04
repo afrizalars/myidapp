@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title >Pending Approval</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+   <ion-card *ngFor="let row of newsData ">
+ 
+  <ion-card-content tappable (click)="goToLeaveApproval(row.leave_req_ID)">
+  <ion-row >
+       <ion-col >
+        <div>Pegawai :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.leave_req_CreatedBy}}</div>
+      </ion-col>
+ 
+    </ion-row>
+  <ion-row>
+       <ion-col >
+        <div>Tipe Cuti :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.ref_leave_type_Name}}</div>
+      </ion-col>
+ 
+    </ion-row>
+	<ion-row>
+       <ion-col >
+        <div>Mulai :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.leave_req_StartDate}}</div>
+      </ion-col>
+ 
+    </ion-row>
+		<ion-row>
+       <ion-col >
+        <div>Selesai :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.leave_req_EndDate}}</div>
+      </ion-col>
+ 
+    </ion-row>
+		<ion-row>
+       <ion-col >
+        <div>Reason :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.leave_req_Reason}}</div>
+      </ion-col>
+ 
+    </ion-row>
+		<ion-row>
+       <ion-col >
+        <div>Status :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.leave_req_StatusApprovername}}</div>
+      </ion-col>
+ 
+    </ion-row>
+		
+	
+	
+  
+  
+  
+    <!-- <p>  -->
+		   <!-- Jam Masuk  : {{row.attd_rec_TimeIN}} <br> Jam Pulang : {{row.attd_rec_TimeOut}}<br>  -->
+		    <!-- Terlambat : {{row.attd_rec_LateIn}} <br> Pulang Cepat : {{row.attd_rec_EarlyOut}}<br>  -->
+			 <!-- Status : {{row.attd_rec_Status}} <br> Ket : {{row.attd_rec_AppStatus}}<br></p> -->
+  </ion-card-content>
+
+</ion-card>
+  
+
+</ion-content>

@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Aplikasi</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+<!-- <div> -->
+      <!-- <a class="ion-home color-primary item" href="#" onclick="window.open('https://lps.go.id', '_self', 'zoom=no'); return false;"> Dashboard</a> -->
+   <!-- </div> -->
+<ion-card tappable (click)="goToLeaveRequest()">
+   <img src="assets/img/misc/Cuti.png"/>
+
+    <div class="card-title">   
+	Leave Request<br>
+	<h4><font color="#58595b">You have {{countPendingLeaveReq}} pending items</font></h4></div>
+	
+	 <!-- <div class="card-subtitle">You have {{PendingTaskLeaveRequest}} pending items</div> -->
+   
+  </ion-card>
+
+
+
+
+  
+   <ion-card tappable (click)="goToMeetingAttendance()">
+    <img src="assets/img/misc/meeting.png"/>
+    <div class="card-title">   <br>Meeting attendance</div>
+  </ion-card>
+  
+    <ion-card tappable (click)="openWebpage('https:\\iopera.lps.go.id')">
+    <img src="assets/img/misc/iOpera.png"/>
+    <div class="card-title">  <br>iOPERA</div>
+  </ion-card>
+   
+   
+  
+  
+   <!-- <ion-card> -->
+    <!-- <img src="assets/img/card-sf.png"/> -->
+    <!-- <div class="card-title"> <ion-icon name="people"></ion-icon>  <br>Survey </div> -->
+  
+  <!-- </ion-card> -->
+
+
+    
+</ion-content>

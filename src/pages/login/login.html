@@ -1,0 +1,121 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
+    <ion-slide class="slide-background swiper-no-swiping" *ngFor="let background of backgrounds" [ngStyle]="{'background-image': 'url(' + background +')'}">
+    </ion-slide>
+  </ion-slides>
+  <div class="login-container">
+     <img class="logo" src="assets/img/new-logo.png" /> 
+	<!-- <img class="logo" src="assets/img/logo/logo-canon.png" /> -->
+	<form #loginForm="ngForm" novalidate *ngIf="p == 0">
+		
+			<ion-item>
+				<ion-label stacked color="primary">Username</ion-label>
+				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+					required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
+				Username is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">Password</ion-label>
+				<ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
+				Password is required
+			</p>
+	
+
+		<ion-row responsive-sm>
+			<ion-col>
+				<button ion-button (click)="onLogin(loginForm)" type="submit" block>Login</button>
+			</ion-col>
+		</ion-row>
+		<ion-row responsive-sm>
+			<ion-col>
+				 <p (click)="openRegisterAccount()"><strong>Register Account?</strong></p>
+			</ion-col>
+		</ion-row>
+		
+		
+			<ion-row responsive-sm>
+			<ion-col>
+				 <p > -----------                   Atau login dengan biometric                          ---------</p>
+			</ion-col>
+			
+			
+			
+		</ion-row>
+		
+			<ion-row responsive-sm>
+			<ion-col>
+				 	<div class="container-app" (click)="loginWithFingerPrint()" tappable>
+        <img class="card-image" src="assets/img/biometric.jpg">
+		
+		
+		</div>
+			</ion-col>
+			
+			
+			
+		</ion-row>
+		
+			<ion-row responsive-sm>
+			<ion-col>
+				 <p > -----------                    Atau login dengan qr code                          ---------</p>
+			</ion-col>
+			
+			
+			
+		</ion-row>
+			<ion-row responsive-sm>
+			<ion-col>
+					<div class="container-app" (click)="loginWithBarcode()" tappable>
+        <img class="card-image" src="assets/img/qr-code.jpg">
+		
+		
+		</div>
+			</ion-col>
+			
+			
+			
+		</ion-row>
+		
+	</form>
+	
+	<form #registerForm="ngForm" novalidate *ngIf="p == 1">
+	<h4>Register Account :</h4>
+			<ion-item>
+				<ion-label stacked color="primary">Username</ion-label>
+				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
+					required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
+				Username is required
+			</p>
+
+			
+
+		<ion-row responsive-sm>
+			<ion-col>
+				<button ion-button (click)="onRegister(registerForm)" type="submit" block>Register</button>
+			</ion-col>
+		</ion-row>
+		<ion-row responsive-sm>
+			<ion-col>
+				 <p (click)="openLoginAccount()"><strong>Login ?</strong></p>
+			</ion-col>
+		</ion-row>
+		
+		
+	</form>
+  
+  </div>
+</ion-content>

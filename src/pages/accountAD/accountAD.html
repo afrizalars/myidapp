@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title >Active Directory</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+ 
+	  
+	    <ion-card >
+  
+  <ion-card-content>
+  <ion-row>
+       <ion-col >
+        <div>Your Account :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{username}}</div>
+      </ion-col>
+ 
+    </ion-row>
+	<ion-row>
+       <ion-col >
+        <div> Status  :</div>
+      </ion-col>
+      <ion-col col-auto>
+      <div>{{StatusAccount}}</div>
+      </ion-col>
+ 
+    </ion-row>
+	
+	
+
+  </ion-card-content>
+
+</ion-card>
+	  
+	  <br>
+   	  <button color="primary" ion-item (click)="unlockAccount()">
+		   
+		   Unlock Account
+		   
+        </button>
+   <br>
+	
+	  <button color="primary" ion-item (click)="changePassword()">
+		   
+		   Reset Password
+		   
+        </button>
+    
+
+</ion-content>

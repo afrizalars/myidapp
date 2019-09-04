@@ -1,0 +1,322 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-title>Account</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <div padding-top text-center>
+    <img src="http://appws.lps.go.id/imgpegawai?file={{personalNumber}}.jpg" alt="avatar">
+    <!-- <h2>{{DataProfile.Nama}}</h2> -->
+    <ion-item no-lines class="title-header" *ngFor="let item of DataProfile ">
+
+      <h2>{{item.nama}}</h2>
+      <h2>{{item.posisi}}</h2>
+      <h2>{{item.Direktorat}}</h2>
+    </ion-item>
+
+    <ion-row responsive-sm>
+      <ion-col>
+        <button ion-button (click)="logout()">Logout</button>
+      </ion-col>
+    </ion-row>
+    <Br>
+
+
+
+    <!-- <ion-toolbar color="white" no-border  style="overflow-x: scroll;"> -->
+    <ion-segment [(ngModel)]="profile" color="primary" class="scroll" scrollable>
+      <ion-segment-button value="profil" checked class="scroll-list">
+        Profil
+      </ion-segment-button>
+      <ion-segment-button value="posisi" class="scroll-list">
+        Riwayat Posisi
+      </ion-segment-button>
+      <ion-segment-button value="pangkat" class="scroll-list">
+        Riwayat Pangkat
+      </ion-segment-button>
+      <ion-segment-button value="penilaian" class="scroll-list">
+        Riwayat Penilaian
+      </ion-segment-button>
+      <ion-segment-button value="pendidikan" class="scroll-list">
+        Riwayat Pendidikan
+      </ion-segment-button>
+      <ion-segment-button value="pelatihan" class="scroll-list">
+        Riwayat Pelatihan
+      </ion-segment-button>
+      <ion-segment-button value="kerja" class="scroll-list">
+        Riwayat Kerja
+      </ion-segment-button>
+
+
+    </ion-segment>
+    <!-- </ion-toolbar> -->
+
+    <div [ngSwitch]="profile">
+      <div class="segment-tab" *ngSwitchCase="'profil'">
+        <ion-list inset>
+          <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>NIK</ion-label>
+            <ion-input type="text" [(ngModel)]="item.NIK" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>Tanggal Lahir</ion-label>
+            <ion-input type="text" [(ngModel)]="item.lahir" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>Alamat</ion-label>
+            <ion-input type="text" [(ngModel)]="item.alamat" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+          </ion-item>
+          <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>Status Kepegawaian</ion-label>
+            <ion-input type="text" [(ngModel)]="item.StatusKerja" [ngModelOptions]="{standalone: true}" readonly>
+            </ion-input>
+          </ion-item>
+          <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>Pangkat</ion-label>
+            <ion-input type="text" [(ngModel)]="item.pangkat" [ngModelOptions]="{standalone: true}" readonly>
+            </ion-input>
+          </ion-item>
+          <!-- <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>Status Perkawinan</ion-label>
+            <ion-input type="text" [(ngModel)]="item.StatusPerkawinan" [ngModelOptions]="{standalone: true}" readonly>
+            </ion-input>
+          </ion-item> -->
+          <ion-item *ngFor="let item of DataProfile ">
+            <ion-label floating>Agama</ion-label>
+            <ion-input type="text" [(ngModel)]="item.agama" [ngModelOptions]="{standalone: true}" readonly></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </div>
+      <div class="segment-tab" *ngSwitchCase="'posisi'">
+        <ion-card *ngFor="let row of DataRiwayatPosisi ">
+          <ion-card-content>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Mulai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.BeginDate}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Selesai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.EndDate}}</div>
+              </ion-col>
+            </ion-row> 
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Posisi :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Posisi}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="segment-tab" *ngSwitchCase="'kerja'">
+        <ion-card *ngFor="let row of DataRiwayatKerja " >        
+          <ion-card-content>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Mulai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.BeginDate}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Selesai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.EndDate}}</div>
+              </ion-col>
+            </ion-row> 
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Perusahaan :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Perusahaan}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Kota :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Kota}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Bidang Perusahaan :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.BidangPerusahaan}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Jabatan :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Jabatan}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Posisi :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Posisi}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="segment-tab" *ngSwitchCase="'pelatihan'">
+        <ion-card *ngFor="let row of DataRiwayatPelatihan " >        
+          <ion-card-content>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Mulai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.BeginDate}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Selesai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.EndDate}}</div>
+              </ion-col>
+            </ion-row> 
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Pangkat :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Pangkat}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <div class="segment-tab" *ngSwitchCase="'penilaian'">
+        <ion-card *ngFor="let row of DataRiwayatPenilaian " >        
+          <ion-card-content>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Periode :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Periode}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Rating Final :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.RatingFinal}}</div>
+              </ion-col>
+            </ion-row> 
+           
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div class="segment-tab" *ngSwitchCase="'pangkat'">
+        <ion-card *ngFor="let row of DataRiwayatPangkat " >        
+          <ion-card-content>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Mulai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.BeginDate}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Selesai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.EndDate}}</div>
+              </ion-col>
+            </ion-row> 
+            <ion-row>  
+              <ion-col class="col-header">
+                <div>Pangkat :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Pangkat}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    
+
+
+      <div class="segment-tab" *ngSwitchCase="'pendidikan'">
+        <ion-card *ngFor="let row of DataRiwayatPendidikan " >        
+          <ion-card-content>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Mulai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.BeginDate}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Tanggal Selesai :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.EndDate}}</div>
+              </ion-col>
+            </ion-row>   
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Pendidikan :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Pendidikan}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Institusi :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.Institusi}}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="col-header">
+                <div>Program Studi :</div>
+              </ion-col>
+              <ion-col col-auto>
+                <div>{{row.ProgramStudi}}</div>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

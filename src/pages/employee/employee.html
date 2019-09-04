@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+ <ion-title>Data Pegawai</ion-title>
+   
+
+  
+  </ion-navbar>
+
+
+</ion-header>
+
+<ion-content>
+   <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+  
+   <ion-list  #scheduleList >
+  
+	
+	  <ion-item-sliding *ngFor="let item of newsData " #slidingItem   >
+
+        <button ion-item (click)="goToSessionDetail(item)">
+		   <ion-avatar item-start>
+      <img src={{item.img}}>
+    </ion-avatar>
+		    {{item.nama}} 
+		   <br>
+          <p>
+          {{item.posisi}}
+          </p>
+          <p>
+            {{item.Direktorat}}
+            </p>
+        </button>
+
+        
+
+      </ion-item-sliding>
+	
+	
+	
+	
+   
+    
+  </ion-list>
+  
+
+
+
+
+</ion-content>

@@ -1,0 +1,106 @@
+{
+  "name": "app-mobile",
+  "version": "0.0.1",
+  "description": "An Ionic project",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionic-team/ionic-conference-app.git"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@angular/common": "4.4.3",
+    "@angular/compiler": "4.4.3",
+    "@angular/compiler-cli": "4.4.3",
+    "@angular/core": "4.4.3",
+    "@angular/forms": "4.4.3",
+    "@angular/http": "4.4.3",
+    "@angular/platform-browser": "4.4.3",
+    "@angular/platform-browser-dynamic": "4.4.3",
+    "@ionic-native/app-minimize": "^5.12.0",
+    "@ionic-native/barcode-scanner": "^4.20.0",
+    "@ionic-native/core": "^4.20.0",
+    "@ionic-native/device": "^4.3.1",
+    "@ionic-native/fingerprint-aio": "^4.20.0",
+    "@ionic-native/in-app-browser": "3.13.1",
+    "@ionic-native/network-interface": "^4.20.0",
+    "@ionic-native/qr-scanner": "^4.20.0",
+    "@ionic-native/splash-screen": "3.13.1",
+    "@ionic-native/status-bar": "3.13.1",
+    "@ionic-native/unique-device-id": "^4.3.1",
+    "@ionic/storage": "2.0.1",
+    "chart.js": "^2.8.0",
+    "cordova-android": "^8.0.0",
+    "cordova-browser": "6.0.0",
+    "cordova-ios": "^4.5.1",
+    "cordova-plugin-appminimize": "^1.0.1",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-fcm-with-dependecy-updated": "^2.4.0",
+    "cordova-plugin-fingerprint-aio": "^2.0.0",
+    "cordova-plugin-inappbrowser": "~1.4.0",
+    "cordova-plugin-ionic-webview": "^1.1.8",
+    "cordova-plugin-networkinterface": "2.0.0",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-uniquedeviceid": "^1.3.2",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-wifiinfo-plugin": "^0.1.0",
+    "es6-promise-plugin": "^4.1.0",
+    "ionic-angular": "3.7.1",
+    "ionic-plugin-keyboard": "~2.2.1",
+    "ionicons": "3.0.0",
+    "node-sass": "^4.12.0",
+    "phonegap-plugin-barcodescanner": "^8.1.0",
+    "rxjs": "5.4.3",
+    "sw-toolbox": "3.6.0",
+    "wifiwizard2": "^3.1.0",
+    "zone.js": "0.8.18"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "^3.2.3",
+    "@ionic/lab": "1.0.23",
+    "typescript": "~2.3.2"
+  },
+  "config": {
+    "ionic_aot_write_to_disk": true
+  },
+  "cordova": {
+    "platforms": [
+      "ios",
+      "browser",
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-ionic-webview": {},
+      "cordova-plugin-uniquedeviceid": {},
+      "cordova-plugin-fcm-with-dependecy-updated": {},
+      "cordova-plugin-networkinterface": {},
+      "cordova-wifiinfo-plugin": {},
+      "wifiwizard2": {},
+      "cordova-plugin-fingerprint-aio": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-appminimize": {}
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/ionic-team/ionic-conference-app/issues"
+  },
+  "homepage": "https://github.com/ionic-team/ionic-conference-app#readme",
+  "main": "index.js",
+  "author": ""
+}

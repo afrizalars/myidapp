@@ -1,0 +1,121 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-title>Meeting Attendance</ion-title>
+   
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<!-- <button ion-button (click)="scanCode()"  type="submit" round >Scan</button> -->
+
+  <!-- <button ion-button round (click)="scanCode()">Scan Code</button> -->
+
+  <!-- <div *ngIf="scannedData"> -->
+    <!-- <p>Scanned Code Text : <b>{{scannedData['text']}}</b></p> -->
+    <!-- <p>Scanned Code Format : <b>{{scannedData['format']}}</b></p> -->
+  <!-- </div> -->
+
+  <!-- <ion-input type="text" [(ngModel)]="encodeData"></ion-input> -->
+  <!-- <button ion-button (click)="encodedText()">Encode Text</button> -->
+  	
+ <br>
+
+			<div align="center">
+				<button ion-button (click)="encodedText(itemMeeting.attd_m_req_ID)"  type="submit" round >View Barcode</button>
+				</div>
+				<br>
+
+ <div *ngIf="isShowCard == 1">
+	 <ion-card>
+   
+    <ion-card-content>
+     <ion-list>
+		<ion-item>
+			<p>Title</p>
+			{{itemMeeting.attd_m_req_Title}}
+		</ion-item>
+	</ion-list>
+	<ion-list>
+		<ion-item>
+			<p>Desc</p>
+			{{itemMeeting.attd_m_req_Desc}}
+		</ion-item>
+	</ion-list>
+		<ion-list>
+		<ion-item>
+			<p>Location</p>
+			{{itemMeeting.attd_m_req_Location}}
+		</ion-item>
+	</ion-list>
+	<ion-list>
+		<ion-item>
+			<p>Date</p>
+			 <ion-note item-end>{{itemMeeting.attd_m_req_Date}}</ion-note>
+			
+		</ion-item>
+	</ion-list>
+	
+	
+	<ion-list>
+		<ion-item>
+				<p>Start</p>
+      <ion-note item-end>{{itemMeeting.attd_m_req_StartTime.substring(0, 5)}}</ion-note>
+		</ion-item>
+	</ion-list>
+	<ion-list>
+		<ion-item>
+				<p>End</p>
+      <ion-note item-end>{{itemMeeting.attd_m_req_EndTime.substring(0, 5)}}</ion-note>
+		</ion-item>
+	</ion-list>
+	<ion-list>
+		<ion-item>
+				<p>Created by</p>
+      <ion-note item-end>{{itemMeeting.Nama}}</ion-note>
+		</ion-item>
+	</ion-list>
+     
+	 
+	 
+	 
+	
+    </ion-card-content>
+	  </ion-card>
+	  </div>
+	
+	
+	
+		
+				
+				
+				
+	
+	<div align="center" *ngIf="isShowCard == 1">
+				 <ion-card >
+  
+    <ion-card-content>
+    <ion-list *ngFor="let row of itemMeetingAttendance">
+   
+    <ion-item>
+      <ion-icon name="pin" item-start  color="secondary"></ion-icon>
+      <ion-label>{{row.Nama}}</ion-label>
+     
+    </ion-item>
+    <!-- <ion-item> -->
+      <!-- <ion-icon name="pin" item-start  color="secondary"></ion-icon> -->
+      <!-- <ion-label>Agha Dwi Nugraha</ion-label> -->
+      
+    <!-- </ion-item> -->
+
+  </ion-list>
+    </ion-card-content>
+	  </ion-card>
+	  </div>
+			
+	
+	
+
+   
+  
+</ion-content>

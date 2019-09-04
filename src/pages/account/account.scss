@@ -1,0 +1,35 @@
+
+page-account img {
+  max-width: 140px;
+  border-radius: 50%;
+}
+
+
+.title-header {
+  margin: auto;
+
+ padding-top:8px;
+ padding-bottom:10px;
+   text-align: center;
+}
+
+
+
+.scroll{
+
+  display: block;
+  white-space: nowrap;
+  font-size: 0;
+  overflow: auto;
+
+}
+
+.scroll-list{
+ display: inline-block!important;
+  min-width: 150px!important;
+  width: auto!important;
+}
+
+.col-header{
+  text-align: left;
+}

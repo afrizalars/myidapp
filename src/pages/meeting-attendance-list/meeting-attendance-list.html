@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+   
+    <ion-title>Meeting List</ion-title>
+   
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  	    <!-- <ion-card *ngFor="let row of newsData "> -->
+		  <ion-card *ngFor="let row of Datas">
+  <ion-item color='primary' tappable (click)="goToMeetingAttendanceView(row.attd_m_req_ID)">
+  
+    <!-- <h2></h2> -->
+	<!-- <p ng-bind="row.attd_rec_Date" ></p> -->
+     <h4>{{row.attd_m_req_Title}}</h4> 
+	
+  </ion-item>
+ <ion-card-content tappable (click)="goToMeetingAttendanceView(row.attd_m_req_ID)">
+  <br>
+  <ion-row>
+       <ion-col >
+        <div>Date	</div>
+      </ion-col>
+	    <div>{{row.attd_m_req_Date}}</div>
+  
+ 
+    </ion-row>
+	<ion-row>
+       <ion-col >
+        <div>Time	</div>
+      </ion-col>
+	    <div>{{row.attd_m_req_StartTime.substring(0, 5)}} - {{row.attd_m_req_EndTime.substring(0, 5)}}</div>
+      </ion-row>
+
+  </ion-card-content>
+
+</ion-card>
+</ion-content>

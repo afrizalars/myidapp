@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title >Your Ticket</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+ 
+	  
+	    <ion-card *ngFor="let row of newsData ">
+  <ion-item>
+  
+    <!-- <h2></h2> -->
+	<!-- <p ng-bind="row.attd_rec_Date" ></p> -->
+     <p>Ticket ID :  {{row.id}}  </p> 
+  </ion-item>
+  <ion-card-content>
+  <ion-row>
+       <ion-col >
+        <div>Tanggal :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.created_at | date: 'dd/MM/yyyy' }}</div>
+      </ion-col>
+ 
+    </ion-row>
+	<ion-row>
+       <ion-col >
+        <div> Permasalahan :</div>
+      </ion-col>
+      <ion-col col-auto>
+      
+      </ion-col>
+ 
+    </ion-row>
+	
+	<ion-row>
+       <ion-col >
+          <div>{{row.summary}}</div>
+      </ion-col>
+ 
+    </ion-row>
+		<ion-row>
+       <ion-col >
+        <div>Status :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.status}}</div>
+      </ion-col>
+  </ion-row>
+  
+		<ion-row>
+       <ion-col >
+        <div>Status Date :</div>
+      </ion-col>
+      <ion-col col-auto>
+        <div>{{row.status_updated_at | date: 'dd/MM/yyyy hh:mm'}}</div>
+      </ion-col>
+  </ion-row>
+
+  </ion-card-content>
+
+</ion-card>
+	  
+	  
+	  
+	  
+	  
+		
+       <!-- {{row.attd_rec_Date}}<br> -->
+		   
+		
+          <!-- <p> -->
+          
+		   <!-- Jam Masuk  : {{row.attd_rec_TimeIN}} <br> Jam Pulang : {{row.attd_rec_TimeOut}}<br> -->
+		    <!-- Terlambat : {{row.attd_rec_LateIn}} <br> Pulang Cepat : {{row.attd_rec_EarlyOut}}<br> -->
+			  <!-- Status : {{row.attd_rec_Status}} <br> Ket : {{row.attd_rec_AppStatus}}<br> -->
+		
+          <!-- </p> -->
+   
+
+        
+
+      <!-- </ion-item> -->
+	
+	
+	
+	
+   
+    
+  <!-- </ion-list> -->
+  
+
+</ion-content>
