@@ -1,74 +1,79 @@
 <ion-header>
 	<ion-navbar no-border-bottom>
 		<button ion-button menuToggle>
-		  <ion-icon name="menu"></ion-icon>
+			<ion-icon name="menu"></ion-icon>
 		</button>
-	 <ion-title>Absensi</ion-title>
-	 <ion-buttons end>
-		<button ion-button icon-only (click)="presentActionSheet()">
-		  <ion-icon name="more"></ion-icon>
-		</button>
-	  </ion-buttons>
-	   
-	
-	  
-	  </ion-navbar>
+		<ion-title>Absensi</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="presentActionSheet()">
+				<ion-icon name="more"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-<div class="about-header">
-  <!-- <img src="assets/img/background/background-5.jpg" alt="ionic logo">  -->
- <div  align="center">
- <h1 class="about-info"><b> <font size="10">{{timeServer}}</font></b></h1>
- </div >
- <div class="about-info">
-	{{myDate}}
+	<div class="about-header">
+		<!-- <img src="assets/img/background/background-5.jpg" alt="ionic logo">  -->
+		<div align="center">
+			<h1 class="about-info"><b>
+					<font size="10">{{timeServer}}</font>
+				</b></h1>
+		</div>
+		<div class="about-info">
+			{{myDate}}
+		</div>
+
 	</div>
-   
-  </div>
-    
+
 
 	<ion-row responsive-sm>
-			<ion-col>
-			<div align='center'>	<h4 ><ion-label center>Time In</ion-label></h4>
-			<ion-label *ngIf="item">{{item.attd_records_TimeIN.substring(11,16)}}</ion-label>
-				
-			</div>
-				<!-- <button ion-button [disabled]="!isenabled" (click)="absenNow()" type="submit" block>Time In</button> -->
-				<!-- <button ion-button (click)="absenNow()" type="submit" block>Time In</button> -->
-				
-			</ion-col>
-			<ion-col>
-			<div align='center'>	<h4 ><ion-label center>Time Out</ion-label></h4>
-			<ion-label *ngIf="item">{{item.attd_records_TimeOut.substring(11,16)}}</ion-label>
-				
-			</div>
-				<!-- <button ion-button [disabled]="!isenabled" (click)="absenNow()" type="submit" block >Time Out</button> -->
-				<!-- <button ion-button (click)="absenNow()" type="submit" block >Time Out</button> -->
-			</ion-col>
-			
-		</ion-row>
+		<ion-col>
+			<div align='center'>
+				<h4>
+					<ion-label center>Time In</ion-label>
+				</h4>
+				<ion-label *ngIf="item">{{item.attd_records_TimeIN}}</ion-label>
 
-		<ion-row responsive-sm>
-				<ion-col>
-				<div align='center'>
-		<!-- <button ion-button (click)="absenNow()"  [disabled]="!isenabled" >Punch</button> -->
-		<button ion-button (click)="absenNow()"  >Punch</button>
-		</div>
-	</ion-col>
+			</div>
+			<!-- <button ion-button [disabled]="!isenabled" (click)="absenNow()" type="submit" block>Time In</button> -->
+			<!-- <button ion-button (click)="absenNow()" type="submit" block>Time In</button> -->
+
+		</ion-col>
+		<ion-col>
+			<div align='center'>
+				<h4>
+					<ion-label center>Time Out</ion-label>
+				</h4>
+				<ion-label *ngIf="item">{{item.attd_records_TimeOut}}</ion-label>
+
+			</div>
+			<!-- <button ion-button [disabled]="!isenabled" (click)="absenNow()" type="submit" block >Time Out</button> -->
+			<!-- <button ion-button (click)="absenNow()" type="submit" block >Time Out</button> -->
+		</ion-col>
+
 	</ion-row>
- 
+
+	<ion-row responsive-sm>
+		<ion-col>
+			<div align='center'>
+				<!-- <button ion-button (click)="absenNow()"  [disabled]="!isenabled" >Punch</button> -->
+				<button ion-button (click)="absenNow()">Punch</button>
+			</div>
+		</ion-col>
+	</ion-row>
+
 	<br>
 	<ion-card>
-      <ion-card-header color="Primary">
-        Chart Kehadiran Pegawai 2019
-      </ion-card-header>
-      <ion-card-content>
+		<ion-card-header color="Primary">
+			Chart Kehadiran Pegawai 2019
+		</ion-card-header>
+		<ion-card-content>
 
-		  <canvas #doughnutCanvas></canvas>
+			<canvas #doughnutCanvas></canvas>
 
-      </ion-card-content>
-    </ion-card>
+		</ion-card-content>
+	</ion-card>
 
 
 </ion-content>

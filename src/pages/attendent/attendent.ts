@@ -34,10 +34,7 @@ export class AttendentPage {
   dataChartValue: any;
   private doughnutChart: Chart;
   myDate: string = new Date().toISOString().substring(0, 10);
-  // public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  // public doughnutChartData:number[] = [350, 450, 100];
-  // public doughnutChartType:string = 'doughnut';
-  // currentDate : string;
+
   constructor(
     public loadingController: LoadingController,
     private popoverController: PopoverController,
@@ -47,7 +44,7 @@ export class AttendentPage {
     public attendentData: AttendentData,
     public userData: UserData,
     public authentication: AuthenticationPersonal,
-    
+
     public alertCtrl: AlertController,
     public toastCtrl: ToastController
 
@@ -65,7 +62,6 @@ export class AttendentPage {
         this.ipaddress = address.ip;
         //	this.showToast('IP = '+address.ip);
         this.getCheckPing();
-
       })
       .catch(error => {
         console.error(`Unable to get IP: ${error}`);
@@ -73,24 +69,17 @@ export class AttendentPage {
       }
       );
 
-    this.getChartData();
-    this.getChart();
+    var label = ["satu", "dua", "tiga"]
+    var data = [1, 2, 3]
+    // this.getChartData();
+    // this.getChart(label, data);
+    this.getabsentoday()
   }
 
   ionViewDidEnter() {
     this.isenabled = false;
-    this.getAbsenPegawaiPerDate();
-    //	 this.updateChart();
-    //  setInterval(() => this.getTimeServer(), 1000);
-
-
-    // this.networkInterface.getWiFiIPAddress()
-
-
+    // this.getAbsenPegawaiPerDate();
   }
-
-
-
 
   ionViewDidLoad() {
     this.loading = this.loadingController.create({ content: "Please wait..." });
@@ -102,7 +91,7 @@ export class AttendentPage {
     this.getTimeServer();
     //this.updateChart();
 
-    this.getAbsenPegawaiPerDate();
+    // this.getAbsenPegawaiPerDate();
     this.loading.dismiss();
 
 
@@ -143,9 +132,6 @@ export class AttendentPage {
           this.showToast(this.ResultMsg[1]);
           this.isenabled = false;
         }
-
-
-
       }
     });
   }
@@ -153,13 +139,12 @@ export class AttendentPage {
   getAbsenPegawaiPerDate() {
     //  this.updateChart();
     this.attendentData.getAbsenPegawaiPerDate(this.username, this.myDate).subscribe((data: any) => {
-      console.log("Satu ");
+      console.log("Satu22 ");
       if (
         data
       ) {
         for (const row of data.hasil) {
           this.item = row;
-
           break;
         }
       }
@@ -189,7 +174,7 @@ export class AttendentPage {
     // });
     this.loading.dismiss();
     this.showToast("Absen Berhasil !");
-    this.getAbsenPegawaiPerDate();
+    // this.getAbsenPegawaiPerDate();
   }
 
   showToast(txt: string) {
@@ -226,37 +211,58 @@ export class AttendentPage {
   }
 
 
-  getChartData() {
-    let dataChartLabel = [];
-    let dataChartValue = [];
-    this.attendentData.GetAbsenPegawaiCurrentYear(this.personalNumber).subscribe((data: any) => {
-      console.log("Satu ");
-      if (
-        data
-      ) {
-        dataChartLabel.concat(data.label);
-        // this.dataChartLabel = ;
-        console.log('datalabel : ' + this.dataChartLabel)
-        dataChartValue.concat(data.value);
-        // this.dataChartValue = data.value;
-        console.log('datavalue : ' + this.dataChartValue)
+  // getChartData() {
+  //   let dataChartLabel = [];
+  //   let dataChartValue = [];
+  //   this.attendentData.GetAbsenPegawaiCurrentYear(this.personalNumber).subscribe((data: any) => {
+  //     // console.log("Satu ");
+  //     if (
+  //       data
+  //     ) {
+  //       dataChartLabel.concat(data.label);
+  //       // this.dataChartLabel = ;
+  //       console.log('datalabel : ' + this.dataChartLabel)
+  //       dataChartValue.concat(data.value);
+  //       // this.dataChartValue = data.value;
+  //       console.log('datavalue : ' + this.dataChartValue)
+  //     }
+  //   });
+  // }
+
+  getabsentoday() {
+    this.attendentData.getabsentoday(this.personalNumber).subscribe((data: any) => {
+      console.log("Chart Rekap Absen Individu ");
+      let label = []
+      let dataAbsen = []
+
+      for (var row of data.hasil) {
+        label.push(row.category)
+        dataAbsen.push(row.total)
       }
+      console.log(label)
+      console.log(dataAbsen)
+      this.getChart(label,dataAbsen)
     });
   }
 
-  getChart() {
-
-
-
+  getChart(label, data) {
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: "doughnut",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: label,
         //  labels : this.dataChartLabel,
         datasets: [
           {
             label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
+            data: data,
+            options: {
+              legend: {
+                display: false,
+                  labels: {
+                    display: false
+                  }
+              }
+            } ,
             // data : this.dataChartValue,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",

@@ -22,36 +22,46 @@ export class AttendentHistoryPage {
    public loadingController: LoadingController,
         public userData: UserData,
 	public attendentData: AttendentData,
-	public navParams : NavParams
+  public navParams : NavParams
   
-   
   ) {}
-
   ionViewWillEnter() {
-   
   }
    ionViewDidLoad() {
-	
    this.getUsername() ;
- 
-	
-	 
-	
   }
   
    getUsername() {
 	   
     this.userData.getUsername().then((username) => {
       this.username = username;
-	  
-	  
     });
   }
+
   onSearch(){
-	   this.getAbsenPegawaiPerMonth();
+	  this.getrekapabsen_pegawai()
 	  console.log("atu ");
   }
   
+
+  getrekapabsen_pegawai(){
+    this.attendentData.getrekapabsen_pegawai('20000246','2019','08').subscribe((data: any) => {
+      console.log("Chart Rekap Absen getrekapabsen_pegawai ");
+      // let label = []
+      // let dataAbsen = []
+
+      for (var row of data) {
+        // label.push(row.category)
+        // dataAbsen.push(row.total)
+        
+      }
+      console.log(data)
+      // console.log(label)
+      // console.log(dataAbsen)
+      // this.getChart(label,dataAbsen)
+    });
+  }
+
   getAbsenPegawaiPerMonth(){
   // this.attendentData.getAbsenPegawaiPerMonth(this.navParams.data.username,this.bulan,this.tahun).subscribe((data: any) => {
 		 // console.log("Satu ");
@@ -78,6 +88,4 @@ export class AttendentHistoryPage {
 	})
 	this.loading.dismiss();
   }
-  
- 
 }

@@ -15,6 +15,16 @@ export class AttendentData {
 
   constructor(public http: Http, public user: UserData) { }
   
+	getabsentoday(personalnum: string) {
+		console.log("Masuk function call getabsentoday2");
+
+		return this.http.get('http://192.168.10.130:3030/getabsentoday?personalnum=' + personalnum).map(res => res.json());
+
+	}
+	getrekapabsen_pegawai(personalnum: string, tahun: string, bulan: string) {
+		console.log("Masuk function call getrekapabsen_pegawai");
+		return this.http.get('http://192.168.10.130:3030/getrekapabsen_pegawai?personalnum=' + personalnum + '&tahun=' + tahun+ '&bulan=' +bulan).map(res => res.json());
+	}
 
 	getAbsenPegawaiPerDate(username : string,date :string){
 		      console.log("Masuk function call getAbsenPegawaiPerDate");
