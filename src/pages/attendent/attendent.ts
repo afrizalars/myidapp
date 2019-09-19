@@ -7,11 +7,11 @@ import { AttendentHistoryPage } from '../attendent-history/attendent-history';
 import { AttendentPopoverPage } from '../attendent-popover/attendent-popover';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-import { NetworkInterface } from '@ionic-native/network-interface';
+// import { NetworkInterface } from '@ionic-native/network-interface';
 import { PopoverController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js';
-
+// import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 
 @Component({
@@ -33,74 +33,74 @@ export class AttendentPage {
   dataChartLabel: any;
   dataChartValue: any;
   private doughnutChart: Chart;
+  absen: string = "";
+  TimeIn: string = "";
+  TimeOut: string = "";
+  TimeCondition: string = "in"
   myDate: string = new Date().toISOString().substring(0, 10);
 
   constructor(
     public loadingController: LoadingController,
     private popoverController: PopoverController,
     public actionSheetCtrl: ActionSheetController,
-    private networkInterface: NetworkInterface,
+    // private networkInterface: NetworkInterface,
     public navCtrl: NavController,
     public attendentData: AttendentData,
     public userData: UserData,
     public authentication: AuthenticationPersonal,
-
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController
-
+    public toastCtrl: ToastController,
+    // private qrScanner: QRScanner
   ) { }
 
-  ngOnInit() {
 
+  ngOnInit() {
     this.personalNumber = localStorage.getItem("PersonalNumber");
     this.username = localStorage.getItem("username");
 
-    this.networkInterface.getWiFiIPAddress()
-      .then(address => {
-        alert(`WIFI --  IP: ${address.ip}, Subnet: ${address.subnet}`);
-        //this.showToast(`WIFI -- IP: ${address.ip}, Subnet: ${address.subnet}`); 
-        this.ipaddress = address.ip;
-        //	this.showToast('IP = '+address.ip);
-        this.getCheckPing();
-      })
-      .catch(error => {
-        console.error(`Unable to get IP: ${error}`);
-        this.showToast('Disconnected ! Please connect LPS Wifi..');
-      }
-      );
+    // this.networkInterface.getWiFiIPAddress()
+    //   .then(address => {
+    //     alert(`WIFI --  IP: ${address.ip}, Subnet: ${address.subnet}`);
+    //     this.showToast(`WIFI -- IP: ${address.ip}, Subnet: ${address.subnet}`); 
+    //     this.ipaddress = address.ip;
+    //     this.showToast('IP = '+address.ip);
+    //     console.log("TES@")
+    //     // this.getCheckPing();
+    //   })
+    //   .catch(error => {
+    //     console.error(`Unable to get IP: ${error}`);
+    //     // this.getCheckPing();
+    //     this.showToast('Disconnected ! Please connect LPS Wifi..');
+    //   }
+    //   );
+    this.getCheckPing()
 
-    var label = ["satu", "dua", "tiga"]
-    var data = [1, 2, 3]
-    // this.getChartData();
-    // this.getChart(label, data);
     this.getabsentoday()
+    this.checkTimeInOut()
   }
 
   ionViewDidEnter() {
+    this.getCheckPing();
     this.isenabled = false;
-    // this.getAbsenPegawaiPerDate();
+  }
+
+  ionViewWillEnter() {
+    this.getCheckPing();
   }
 
   ionViewDidLoad() {
     this.loading = this.loadingController.create({ content: "Please wait..." });
     this.loading.present();
-
     this.isenabled = false;
-    //	this.startScan();
+    // this.startScan();
 
+    this.getCheckPing();
     this.getTimeServer();
-    //this.updateChart();
-
-    // this.getAbsenPegawaiPerDate();
     this.loading.dismiss();
-
-
-
   }
   goToAttendentHistory() {
     this.navCtrl.push(AttendentHistoryPage, { username: this.username });
   }
-
 
   getTimeServer() {
     this.attendentData.getTimeServer().subscribe((data: any) => {
@@ -114,26 +114,33 @@ export class AttendentPage {
     });
   }
 
-
   getCheckPing() {
-
-    this.attendentData.checkPing(this.ipaddress).subscribe((data: any) => {
-
+    this.attendentData.checkPing('192.168.10.130').subscribe((data: any) => {
       if (
         data
       ) {
 
-        this.ResultMsg = (data.Result).split("|", 2);
+        this.ResultMsg = (data.result).split("|", 2);
+        console.log(this.ResultMsg)
         if (this.ResultMsg[0] == 'OK') {
-          this.isenabled = true;
+          this.isenabled = false;
+          this.absen = "ABSEN"
           this.showToast(this.ResultMsg[1]);
         }
         else {
           this.showToast(this.ResultMsg[1]);
-          this.isenabled = false;
+          this.absen = "TIDAK DALAM JARINGAN LPS"
+          this.isenabled = true;
         }
       }
     });
+  }
+
+  authBarcode(){
+    this.loading = this.loadingController.create({ content: "Logging in ,please wait..." });
+    this.loading.present();
+    this.authResult = this.authentication.checkAuthApproval("barcode");
+    console.log("Return :" + this.authResult);
   }
 
   getAbsenPegawaiPerDate() {
@@ -152,30 +159,55 @@ export class AttendentPage {
   }
 
   async absenNow() {
-
-    this.authResult = await this.authentication.checkAuthApproval("biometric");
-    this.loading = this.loadingController.create({ content: "Please wait..." });
-    this.loading.present();
+    console.log("absen")
+    // this.authBarcode()
     // this.attendentData.insertAbsen(this.username).subscribe((data: any) => {
-    //   console.log("Satu ");
-    //   if (
-    //     data
-    //   ) {
-    //     for (const row of data) {
-
-
-    //       this.item = row;
-    //       break;
-
-
-
-    //     }
-    //   }
+    //   this.showToast("recorded at " + data.result);
     // });
-    this.loading.dismiss();
-    this.showToast("Absen Berhasil !");
-    // this.getAbsenPegawaiPerDate();
   }
+
+  // QrCodeAuth() {
+  //   this.qrScanner.prepare()
+  //     .then((status: QRScannerStatus) => {
+  //       if (status.authorized) {
+  //         // camera permission was granted
+  //         // start scanning
+
+  //         let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+  //           console.log('Scanned something', text);
+
+  //           this.qrScanner.hide(); // hide camera preview
+  //           scanSub.unsubscribe(); // stop scanning
+  //         });
+
+  //       } else if (status.denied) {
+  //         // camera permission was permanently denied
+  //         // you must use QRScanner.openSettings() method to guide the user to the settings page
+  //         // then they can grant the permission from there
+  //       } else {
+  //         // permission was denied, but not permanently. You can ask for permission again at a later time.
+  //       }
+  //     })
+  //     .catch((e: any) => console.log('Error is', e));
+  // }
+
+  checkTimeInOut() {
+    this.attendentData.getTimeInOut(this.username).subscribe((data: any) => {
+      this.attendentData.getAbsenRecord(this.username).subscribe((data2: any) => {
+        if (data2.result.length > 1) {
+          this.TimeIn = data.result[0].attd_records_TimeIN
+          this.TimeOut = data.result[0].attd_records_TimeOut
+        } else if (data2.result.length == 1) {
+          this.TimeIn = data.result[0].attd_records_TimeIN
+          this.TimeOut = "belum absen keluar"
+        } else {
+          this.TimeIn = "belum absen"
+          this.TimeOut = ""
+        }
+      })
+    });
+  }
+
 
   showToast(txt: string) {
     let toast = this.toastCtrl.create({
@@ -210,25 +242,6 @@ export class AttendentPage {
     actionSheet.present();
   }
 
-
-  // getChartData() {
-  //   let dataChartLabel = [];
-  //   let dataChartValue = [];
-  //   this.attendentData.GetAbsenPegawaiCurrentYear(this.personalNumber).subscribe((data: any) => {
-  //     // console.log("Satu ");
-  //     if (
-  //       data
-  //     ) {
-  //       dataChartLabel.concat(data.label);
-  //       // this.dataChartLabel = ;
-  //       console.log('datalabel : ' + this.dataChartLabel)
-  //       dataChartValue.concat(data.value);
-  //       // this.dataChartValue = data.value;
-  //       console.log('datavalue : ' + this.dataChartValue)
-  //     }
-  //   });
-  // }
-
   getabsentoday() {
     this.attendentData.getabsentoday(this.personalNumber).subscribe((data: any) => {
       console.log("Chart Rekap Absen Individu ");
@@ -241,7 +254,7 @@ export class AttendentPage {
       }
       console.log(label)
       console.log(dataAbsen)
-      this.getChart(label,dataAbsen)
+      this.getChart(label, dataAbsen)
     });
   }
 
@@ -255,14 +268,18 @@ export class AttendentPage {
           {
             label: "# of Votes",
             data: data,
+            legend: {
+              enabled: false
+            },
             options: {
               legend: {
+                enabled: false,
                 display: false,
-                  labels: {
-                    display: false
-                  }
+                labels: {
+                  display: false
+                }
               }
-            } ,
+            },
             // data : this.dataChartValue,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",

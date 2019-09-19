@@ -17,18 +17,14 @@ import { UtilityProvider } from '../../providers/utility/utility';
 // import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 // import { BarcodeScanner ,BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 // import { SignupPage } from '../signup/signup';
-
 // declare var WifiInfo: any;
-
-
 // @IonicPage()
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
-
-
 
   backgrounds = [
     'assets/img/background/background-1.jpg',
@@ -36,6 +32,7 @@ export class LoginPage {
     'assets/img/background/background-3.jpg',
     'assets/img/background/background-4.jpg'
   ];
+
   public loginForm: any;
   public authResult: any;
   public registerForm: any;
@@ -75,7 +72,6 @@ export class LoginPage {
   ngOnInit() {
     this.p = 0;
     console.log('Hello LoginBackgroundSlider Page');
-
   }
 
 
@@ -86,8 +82,8 @@ export class LoginPage {
   }
   openLoginAccount() {
     this.p = 0;
-
   }
+
   // async onLogin(form: NgForm) {
   async onLogin(form: NgForm) {
     this.loading = this.loadingController.create({ content: "Logging in ,please wait..." });
@@ -232,7 +228,6 @@ export class LoginPage {
     this.uniqueDeviceID.get()
       .then((uuid: any) => console.log(uuid))
       .catch((error: any) => console.log(error));
-
   }
 
   showAlert(title: string, msg: string) {

@@ -54,89 +54,88 @@ export class ConferenceApp {
   // List of pages that can be navigated to from the left menu
   // the left menu only works after login
   // the login page disables the left menu
-  
+
   rootPage: any;
-  username : string;
-// Datas: any;
- nama : string;
- group : string;
-  foto : string;
+  username: string;
+  // Datas: any;
+  nama: string;
+  group: string;
+  foto: string;
   constructor(
-  // private fcm: FCM,
+    // private fcm: FCM,
     public events: Events,
     public userData: UserData,
     public menu: MenuController,
     public platform: Platform,
     public confData: ConferenceData,
-	public employeeData: EmployeeData,
-	public attendetData: AttendentData,
-	public helpdeskITData: HelpdeskITData,
-	//public leaveReqData: LeaveReqData,
+    public employeeData: EmployeeData,
+    public attendetData: AttendentData,
+    public helpdeskITData: HelpdeskITData,
+    //public leaveReqData: LeaveReqData,
     public storage: Storage,
     public splashScreen: SplashScreen
   ) {
 
     // Check if the user has already seen the tutorial
     this.storage.get('hasSeenTutorial')
-       .then((hasSeenTutorial) => {
-         if (hasSeenTutorial) {
-			
-			 this.userData.hasLoggedIn().then((hasLoggedIn) => {
-			 if (hasLoggedIn)
-			 {
-				   this.rootPage = TabsPage;
-			 }else{
-				   this.rootPage = LoginPage;
-			 }
-		 
-			 });
-			
-         } else {
-	
-           this.rootPage = TutorialPage;
-         }
-		
-	
-       });
-	  
-	  	
-        this.platformReady()
+      .then((hasSeenTutorial) => {
+        if (hasSeenTutorial) {
+
+          this.userData.hasLoggedIn().then((hasLoggedIn) => {
+            if (hasLoggedIn) {
+              this.rootPage = TabsPage;
+            } else {
+              this.rootPage = LoginPage;
+            }
+
+          });
+
+        } else {
+
+          this.rootPage = TutorialPage;
+        }
+
+
+      });
+
+
+    this.platformReady()
 
     // load the conference data
-	//this.getUsername();
+    //this.getUsername();
 
     // decide which menu items should be hidden by current login status stored in local storage
 
-	
+
   }
 
-  
 
-  	   getEmployeeData(){
-  this.employeeData.getEmployeeData(this.username).subscribe((data: any) => {
-	 for (const row of data) {      
-                // this.Datas = row;
-				 this.nama = row['Nama'];
-				  this.group = row['zgroup'];
-				    this.foto = row['img'];
-                break;          
-        }
+
+  getEmployeeData() {
+    this.employeeData.getEmployeeData(this.username).subscribe((data: any) => {
+      for (const row of data) {
+        // this.Datas = row;
+        this.nama = row['Nama'];
+        this.group = row['zgroup'];
+        this.foto = row['img'];
+        break;
+      }
     });
-	
-	
+
+
   }
-	
-    getUsername() {
-	    console.log("Get Username ");
+
+  getUsername() {
+    console.log("Get Username ");
     this.userData.getUsername().then((username) => {
-       this.username = username;
-	   	  console.log("Get Username :"+this.username);
-	  this.getEmployeeData();
+      this.username = username;
+      console.log("Get Username :" + this.username);
+      this.getEmployeeData();
 
     });
   }
-  
-  
+
+
 
 
 
@@ -148,8 +147,8 @@ export class ConferenceApp {
     });
   }
 
-  
-   isActive(page: PageInterface) {
+
+  isActive(page: PageInterface) {
     let childNav = this.nav.getActiveChildNavs()[0];
 
     // Tabs are a special case because they have their own navigation
@@ -165,11 +164,4 @@ export class ConferenceApp {
     }
     return;
   }
-  
-  
-
-  
-  
-  
-  
 }

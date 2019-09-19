@@ -30,10 +30,11 @@
 	<ion-row responsive-sm>
 		<ion-col>
 			<div align='center'>
-				<h4>
+				<p>
 					<ion-label center>Time In</ion-label>
-				</h4>
-				<ion-label *ngIf="item">{{item.attd_records_TimeIN}}</ion-label>
+				</p>
+				<ion-label center>{{TimeIn}}</ion-label>
+				<!-- <ion-label *ngIf="item">{{item.attd_records_TimeIN}}</ion-label> -->
 
 			</div>
 			<!-- <button ion-button [disabled]="!isenabled" (click)="absenNow()" type="submit" block>Time In</button> -->
@@ -42,10 +43,11 @@
 		</ion-col>
 		<ion-col>
 			<div align='center'>
-				<h4>
+				<p>
 					<ion-label center>Time Out</ion-label>
-				</h4>
-				<ion-label *ngIf="item">{{item.attd_records_TimeOut}}</ion-label>
+				</p>
+				<ion-label center>{{TimeOut}}</ion-label>
+				<!-- <ion-label *ngIf="item">{{item.attd_records_TimeOut}}</ion-label> -->
 
 			</div>
 			<!-- <button ion-button [disabled]="!isenabled" (click)="absenNow()" type="submit" block >Time Out</button> -->
@@ -57,8 +59,8 @@
 	<ion-row responsive-sm>
 		<ion-col>
 			<div align='center'>
-				<!-- <button ion-button (click)="absenNow()"  [disabled]="!isenabled" >Punch</button> -->
-				<button ion-button (click)="absenNow()">Punch</button>
+				<button ion-button (click)="absenNow()"  [disabled]="isenabled" >{{absen}}</button>
+				<!-- <button ion-button  [disabled]="isDisabled" (click)="getCheckPing()">Punch</button> -->
 			</div>
 		</ion-col>
 	</ion-row>

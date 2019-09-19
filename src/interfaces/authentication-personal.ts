@@ -7,9 +7,6 @@ import { FingerprintAIO } from '@ionic-native/fingerprint-aio';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { UtilityProvider } from '../providers/utility/utility';
 
-
-
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 
@@ -24,8 +21,6 @@ export class AuthenticationPersonal {
   barcodeScannerOptions: BarcodeScannerOptions;
   options: BarcodeScannerOptions;
   public endResult: string;
-
-
 
   constructor(
     public events: Events,
